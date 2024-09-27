@@ -1,0 +1,53 @@
+/**
+ * @var --textarea-width: Determines complete textarea width. Defaults to 100%
+ * @var --textarea-height: Determines complete textarea height. Defaults to 56px
+ */
+:host {
+  --textarea-width: 100%;
+  --textarea-height: 400px;
+}
+
+div:is(:hover, :focus-within) textarea {
+  border-color: var(--primary-color);
+}
+
+div:has([aria-invalid="true"]) {
+  label {
+    color: var(--error-color);
+  }
+
+  textarea {
+    border-color: var(--error-color);
+  }
+}
+
+label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+  font-size: 12px;
+}
+
+textarea {
+  display: block;
+
+  width: var(--textarea-width);
+  height: var(--textarea-height);
+
+  margin-block-start: 8px;
+  padding-block: 20px;
+  padding-inline: 16px;
+
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  outline: none;
+
+  background-color: var(--background-color);
+  color: var(--font-color-dark);
+  font-size: 14px;
+  font-weight: 400;
+
+  transition: border .2s;
+}

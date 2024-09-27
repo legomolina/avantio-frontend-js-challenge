@@ -1,0 +1,13 @@
+<div>
+  <label [for]="id"><ng-content></ng-content></label>
+
+  <textarea
+    [attr.aria-invalid]="invalid"
+    [disabled]="isDisabled"
+    [id]="id"
+    [name]="name ?? ''"
+    [(ngModel)]="value"
+    (blur)="onTouch()"
+    (input)="onChange(value)"
+  ></textarea>
+</div>

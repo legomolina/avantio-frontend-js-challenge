@@ -42,5 +42,13 @@
         El país
       </div>
     </div>
+
+    <app-textarea
+      formControlName="content"
+      [invalid]="formGroup.controls.content.invalid"
+      name="content"
+    >
+      Contenido
+    </app-textarea>
   </section>
 </dialog>

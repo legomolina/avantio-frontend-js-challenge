@@ -27,7 +27,6 @@ export class TrendEditComponent implements OnInit {
   }
 
   onProviderChange(checked: boolean) {
-    console.log(checked);
     this.formGroup.controls.provider.setValue(checked ? 'elpais' : 'elmundo');
   }
 
