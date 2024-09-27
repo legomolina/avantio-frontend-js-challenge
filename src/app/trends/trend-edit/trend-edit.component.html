@@ -3,7 +3,7 @@
     <h3>Nueva noticia</h3>
 
     <button>Cancelar</button>
-    <button>Guardar</button>
+    <button (click)="submitForm()">Guardar</button>
   </header>
 
   <section [formGroup]="formGroup">
@@ -32,5 +32,15 @@
     >
       Título
     </app-input>
+
+    <div class="provider-selector">
+      <span class="label">Proveedor</span>
+
+      <div class="selector">
+        El mundo
+        <app-switch (change)="onProviderChange($event)"></app-switch>
+        El país
+      </div>
+    </div>
   </section>
 </dialog>

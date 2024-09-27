@@ -16,7 +16,7 @@ export class TrendEditComponent implements OnInit {
     url: new FormControl('', [Validators.required, urlValidator()]),
     image: new FormControl('', [Validators.required, urlValidator()]),
     title: new FormControl('', [Validators.required]),
-    provider: new FormControl('elpais', [Validators.required, providerValidator(trendProviders)]),
+    provider: new FormControl('elmundo', [Validators.required, providerValidator(trendProviders)]),
     content: new FormControl('', [Validators.required]),
   });
 
@@ -25,4 +25,14 @@ export class TrendEditComponent implements OnInit {
   ngOnInit(): void {
     this.dialogEl.nativeElement.showModal();
   }
+
+  onProviderChange(checked: boolean) {
+    console.log(checked);
+    this.formGroup.controls.provider.setValue(checked ? 'elpais' : 'elmundo');
+  }
+
+  submitForm() {
+    console.log(this.formGroup.value);
+  }
+
 }

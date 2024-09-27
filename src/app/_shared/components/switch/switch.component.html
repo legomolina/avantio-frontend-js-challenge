@@ -1,0 +1,16 @@
+<div
+  role="switch"
+  [attr.aria-checked]="checked"
+  [class.disabled]="isDisabled"
+  tabindex="0"
+  (click)="toggleSwitch()"
+  (keydown.space)="toggleSwitch()"
+  (keydown.enter)="toggleSwitch()"
+  (blur)="onTouch()"
+>
+  <div class="switch-box">
+    <div></div>
+  </div>
+
+  <input type="hidden" [name]="name" [value]="checked">
+</div>

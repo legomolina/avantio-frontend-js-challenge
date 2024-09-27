@@ -1,0 +1,61 @@
+:host {
+  --switch-width: 52px;
+  --switch-height: 32px;
+  --switch-border-color: var(--line-color);
+
+  --switch-thumb-size: 16px;
+  --switch-thumb-padding: 8px;
+  --switch-thumb-color: var(--accent-color);
+
+  display: inline-block;
+}
+
+[role="switch"] {
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+
+  &:is(:hover, :focus) {
+    --switch-border-color: var(--primary-color);
+    --switch-thumb-color: var(--primary-color);
+    outline: none;
+  }
+
+  &[aria-checked="true"] {
+    .switch-box > div::after {
+      translate: calc(var(--switch-width) - var(--switch-thumb-padding) * 2 - (var(--switch-thumb-size) / 2));
+    }
+  }
+}
+
+.switch-box {
+  position: relative;
+}
+
+.switch-box > div {
+  display: flex;
+  align-items: center;
+
+  width: var(--switch-width);
+  height: var(--switch-height);
+
+  border-radius: 16px;
+
+  background-color: var(--background-color);
+  // Use shadow instead border to make calculations with translate easier
+  box-shadow: inset 0 0 0 2px var(--switch-border-color);
+
+  transition: all .25s ease-in-out;
+
+  &::after {
+    content: "";
+    width: var(--switch-thumb-size);
+    height: var(--switch-thumb-size);
+
+    border-radius: 50%;
+    background-color: var(--switch-thumb-color);
+    translate: var(--switch-thumb-padding);
+
+    transition: all .25s ease-in-out;
+  }
+}
