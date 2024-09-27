@@ -6,5 +6,8 @@
     [disabled]="isDisabled"
     [id]="id"
     [name]="name ?? ''"
+    [(ngModel)]="value"
+    (blur)="onTouch()"
+    (input)="onChange(value)"
   >
 </div>

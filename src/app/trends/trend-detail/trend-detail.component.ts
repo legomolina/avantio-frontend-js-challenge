@@ -6,6 +6,7 @@ import { selectSelectedTrend } from '../store/selectors';
 @Component({
   selector: 'app-trend-detail',
   template: `
+    <app-trend-edit></app-trend-edit>
     <a class="link-to-home" routerLink="/trends">
       <img src="assets/Iconos/Actions/back.svg" alt="Flecha hacia atrás" />
       <span>TODOS LOS EVENTOS</span>

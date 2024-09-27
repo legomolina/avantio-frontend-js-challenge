@@ -1,0 +1,46 @@
+dialog {
+  inset-block-start: 0;
+  inset-inline-start: unset;
+  inset-inline-end: 0;
+
+  width: 490px;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+
+  margin: 0;
+  padding: 60px 40px 48px;
+
+  border: none;
+  border-radius: 33px 3px 3px 3px;
+  outline: none;
+
+  background-color: var(--background-color);
+  box-shadow: -1px 1px 20px 0 rgb(0 0 0 / .12);
+}
+
+dialog::backdrop {
+  background-color: var(--overlay-backdrop-bg);
+}
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+
+    color: var(--font-color-dark);
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+
+section {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 40px;
+
+  margin-top: 72px;
+}

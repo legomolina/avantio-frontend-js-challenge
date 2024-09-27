@@ -1,0 +1,36 @@
+<dialog #dialog>
+  <header>
+    <h3>Nueva noticia</h3>
+
+    <button>Cancelar</button>
+    <button>Guardar</button>
+  </header>
+
+  <section [formGroup]="formGroup">
+    <app-input
+      formControlName="url"
+      [invalid]="formGroup.controls.url.invalid"
+      name="url"
+      type="url"
+    >
+      URL
+    </app-input>
+
+    <app-input
+      formControlName="image"
+      [invalid]="formGroup.controls.image.invalid"
+      name="image"
+      type="url"
+    >
+      URL Imagen
+    </app-input>
+
+    <app-input
+      formControlName="title"
+      [invalid]="formGroup.controls.title.invalid"
+      name="title"
+    >
+      Título
+    </app-input>
+  </section>
+</dialog>
