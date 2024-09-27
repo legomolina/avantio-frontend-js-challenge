@@ -1,0 +1,10 @@
+<div>
+  <label [for]="id"><ng-content></ng-content></label>
+
+  <input
+    [attr.aria-invalid]="invalid"
+    [disabled]="isDisabled"
+    [id]="id"
+    [name]="name ?? ''"
+  >
+</div>

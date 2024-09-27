@@ -15,6 +15,9 @@ import { AppTrendsModule } from './trends';
 import { httpInterceptorProviders } from './app-http-interceptors';
 import { reducers } from './store/reducers';
 
+import {CoreModule} from "./_core/core.module";
+import {SharedModule} from "./_shared/shared.module";
+
 import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs, 'es');
 
@@ -26,6 +29,8 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
+    CoreModule,
+    SharedModule,
     AppTrendsModule,
     AppRoutingModule,
     AppLayoutModule,

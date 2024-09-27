@@ -1,0 +1,48 @@
+:host {
+  --input-width: 100%;
+  --input-height: 56px;
+}
+
+div:is(:hover, :focus-within) input {
+  border-color: var(--primary-color);
+}
+
+div:has([aria-invalid="true"]) {
+  label {
+    color: var(--error-color);
+  }
+
+  input {
+    border-color: var(--error-color);
+  }
+}
+
+label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+  font-size: 12px;
+}
+
+input {
+  display: block;
+
+  width: var(--input-width);
+  height: var(--input-height);
+
+  margin-block-start: 8px;
+  padding-inline: 16px;
+
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  outline: none;
+
+  background-color: var(--background-color);
+  color: var(--font-color-dark);
+  font-size: 14px;
+  font-weight: 400;
+
+  transition: border .2s;
+}
