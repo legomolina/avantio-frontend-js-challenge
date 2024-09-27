@@ -1,6 +1,5 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {generateId} from "../../../_core/utils/generate-id";
 import {noop} from "rxjs";
 
 @Component({
@@ -15,17 +14,27 @@ import {noop} from "rxjs";
     }
   ]
 })
-export class SwitchComponent implements OnInit, ControlValueAccessor {
+export class SwitchComponent implements ControlValueAccessor {
+  /**
+   * Determines checked state of switch
+   */
   @Input('checked') set isChecked(value: boolean) {
     this.writeValue(value);
   }
-
+  /**
+   * Determines if input must be disabled or not
+   */
   @Input() set disabled(value: boolean) {
     this.setDisabledState(value);
   }
-
+  /**
+   * Input name to work with html forms
+   */
   @Input() name: string | undefined;
 
+  /**
+   * Emits when checked value changes
+   */
   @Output() change = new EventEmitter<boolean>();
 
   onChange: (value: boolean) => void = noop;
@@ -33,11 +42,6 @@ export class SwitchComponent implements OnInit, ControlValueAccessor {
 
   checked = false;
   isDisabled = false;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   toggleSwitch() {
     if (this.isDisabled) {

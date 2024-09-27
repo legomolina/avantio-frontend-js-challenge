@@ -1,3 +1,11 @@
+/**
+ * @var --switch-width: Determines complete switch box width. Defaults to 52px
+ * @var --switch-height: Determines complete switch box height. Defaults to 32px
+ * @var --switch-border-color: Determines switch box border. Defaults to var(--line-color)
+ * @var --switch-thumb-size: Determines switch thumb size. Defaults to 16px
+ * @var --switch-thumb-padding: Determines distance between thumb and switch box. Defaults to 8px
+ * @var --switch-thumb-color: Determines switch thumb color. Defaults to var(--accent-color)
+ */
 :host {
   --switch-width: 52px;
   --switch-height: 32px;
