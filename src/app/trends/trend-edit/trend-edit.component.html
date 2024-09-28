@@ -2,8 +2,10 @@
   <header>
     <h3>Nueva noticia</h3>
 
-    <button>Cancelar</button>
-    <button (click)="submitForm()">Guardar</button>
+    <div class="actions">
+      <app-button kind="text">Cancelar</app-button>
+      <app-button kind="primary" (click)="submitForm()">Guardar</app-button>
+    </div>
   </header>
 
   <section [formGroup]="formGroup">

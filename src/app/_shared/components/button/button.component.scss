@@ -1,0 +1,57 @@
+/**
+ * @var --button-width: Determines button width. Defaults to 'auto'
+ * @var --button-min-height: Determines button height. Defaults to 40px
+ * @var --button-background: Determines button background. Defaults to var(--primary-color)
+ * @var --button-background-hover: Determines button background when hovering it. Defaults to color-mix(in srgb, var(--button-background), white 15%)
+ * @var --button-color: Determines button font color. Defaults to var(--font-color-light)
+ * @var --button-font-weight: Determines font weight. Defaults to 600
+ */
+:host {
+  --button-width: auto;
+  --button-min-height: 40px;
+  --button-background: var(--primary-color);
+  --button-background-hover: color-mix(in srgb, var(--button-background), white 15%);
+  --button-color: var(--font-color-light);
+  --button-font-weight: 600;
+}
+
+:host([kind="primary"]) {
+  --button-background: var(--primary-color);
+  --button-background-hover: color-mix(in srgb, var(--button-background), white 15%);
+  --button-color: var(--font-color-light);
+  --button-font-weight: 600;
+}
+
+:host([kind="text"]) {
+  --button-background: transparent;
+  --button-background-hover: color-mix(in srgb, var(--button-background), black 15%);
+  --button-color: var(--font-color-secondary);
+  --button-font-weight: 500;
+}
+
+button {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--button-width);
+  min-height: var(--button-min-height);
+  padding-inline: 26px;
+
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  background-color: var(--button-background);
+
+  color: var(--button-color);
+  font-weight: var(--button-font-weight);
+  font-size: 14px;
+
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  &:is(:focus, :hover) {
+    background-color: var(--button-background-hover);
+  }
+}

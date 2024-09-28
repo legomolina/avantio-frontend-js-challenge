@@ -35,6 +35,12 @@ header {
     font-weight: 600;
     font-size: 18px;
   }
+
+  .actions {
+    display: flex;
+    flex-flow: row wrap;
+    margin-inline-start: auto;
+  }
 }
 
 section {

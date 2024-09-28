@@ -4,6 +4,7 @@ import { InputComponent } from './components/input/input.component';
 import {FormsModule} from "@angular/forms";
 import { SwitchComponent } from './components/switch/switch.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { ButtonComponent } from './components/button/button.component';
 
 
 
@@ -11,12 +12,14 @@ import { TextareaComponent } from './components/textarea/textarea.component';
   declarations: [
     InputComponent,
     SwitchComponent,
-    TextareaComponent
+    TextareaComponent,
+    ButtonComponent
   ],
   exports: [
     InputComponent,
     SwitchComponent,
-    TextareaComponent
+    TextareaComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
