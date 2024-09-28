@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { selectSelectedTrend } from '../store/selectors';
+import {TrendEditComponent} from "../trend-edit/trend-edit.component";
 
 @Component({
   selector: 'app-trend-detail',
   template: `
-    <app-trend-edit></app-trend-edit>
+    <app-trend-edit #trendEdit [trend]="trend$ | async"></app-trend-edit>
     <a class="link-to-home" routerLink="/trends">
       <img src="assets/Iconos/Actions/back.svg" alt="Flecha hacia atrás" />
       <span>TODOS LOS EVENTOS</span>
@@ -14,7 +15,7 @@ import { selectSelectedTrend } from '../store/selectors';
     <article class="trend__detail" *ngIf="trend$ | async as trend">
       <header class="trend__header">
         <div class="trend__actions">
-          <button type="button" class="trend__action">
+          <button type="button" class="trend__action" (click)="editTrend()">
             <img src="assets/Iconos/Actions/edit.svg" alt="Editar noticia" />
           </button>
           <button type="button" class="trend__action">
@@ -42,5 +43,11 @@ import { selectSelectedTrend } from '../store/selectors';
 export class TrendDetailComponent {
   protected trend$ = this.store.select(selectSelectedTrend);
 
+  @ViewChild('trendEdit') trendEditModal!: TrendEditComponent;
+
   constructor(private store: Store) {}
+
+  editTrend() {
+    this.trendEditModal.openModal();
+  }
 }

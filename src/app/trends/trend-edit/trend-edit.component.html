@@ -1,9 +1,9 @@
-<dialog #dialog>
+<dialog #dialog class="trend-edit-dialog">
   <header>
     <h3>Nueva noticia</h3>
 
     <div class="actions">
-      <app-button kind="text">Cancelar</app-button>
+      <app-button kind="text" (click)="closeModal()">Cancelar</app-button>
       <app-button kind="primary" (click)="submitForm()">Guardar</app-button>
     </div>
   </header>
@@ -40,7 +40,7 @@
 
       <div class="selector">
         El mundo
-        <app-switch (change)="onProviderChange($event)"></app-switch>
+        <app-switch [checked]="formGroup.controls.provider.value === 'elpais'" (change)="onProviderChange($event)"></app-switch>
         El país
       </div>
     </div>

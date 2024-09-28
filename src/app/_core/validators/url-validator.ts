@@ -5,8 +5,6 @@ export const URL_PATTERN = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\
 
 export function urlValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    console.log(control.value);
-
     if (URL_PATTERN.test(control.value)) {
       return null;
     }

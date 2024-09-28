@@ -1,0 +1,33 @@
+.trend-edit-dialog {
+  transform: translate(100%);
+  transition-property: overlay, display, transform;
+  transition-duration: .4s;
+  transition-behavior: allow-discrete;
+}
+
+.trend-edit-dialog[open] {
+  transform: translate(0);
+}
+
+@starting-style {
+  .trend-edit-dialog[open] {
+    transform: translate(100%);
+  }
+}
+
+.trend-edit-dialog::backdrop {
+  opacity: 0;
+  transition-property: overlay, display, opacity;
+  transition-duration: .4s;
+  transition-behavior: allow-discrete;
+}
+
+.trend-edit-dialog[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .trend-edit-dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
