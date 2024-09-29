@@ -32,6 +32,18 @@ export const trendsReducer = createReducer(
   ),
   on(TrendsApiActions.loadOneTrendError, (state): State => {
     return { ...state, selectedTrend: null };
+  }),
+  on(TrendsApiActions.updateTrendsSuccess, (state, { id, trend }): State => {
+    const mappedTrend: Partial<Trend> = {
+      ...trend,
+      body: trend.body.split('\n\n'),
+    };
+    const updatedState = adapter.updateOne({ id, changes: mappedTrend }, state);
+    return { ...updatedState, selectedTrend: { ...state.selectedTrend!, ...mappedTrend } };
+  }),
+  on(TrendsApiActions.updateTrendError, (state) => {
+    // User should be informed via toast or similar
+    return { ...state }
   })
 );
 

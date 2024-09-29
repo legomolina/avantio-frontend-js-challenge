@@ -19,6 +19,8 @@ import {CoreModule} from "./_core/core.module";
 import {SharedModule} from "./_shared/shared.module";
 
 import localeEs from '@angular/common/locales/es';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -36,6 +38,9 @@ registerLocaleData(localeEs, 'es');
     AppLayoutModule,
     AppMenuModule,
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
+    }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot()
   ],

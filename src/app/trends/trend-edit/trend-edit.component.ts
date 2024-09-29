@@ -1,9 +1,12 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {urlValidator} from "../../_core/validators/url-validator";
 import {providerValidator} from "../../_core/validators/provider-validator";
-import {trendProviders} from "../models/trend-provider.model";
+import {TrendProvider, trendProviders} from "../models/trend-provider.model";
+import {Store} from "@ngrx/store";
+import {updateTrend} from "../store/actions/trends-details-page.actions";
 import {Trend} from "../models/trend.model";
+import {TrendRequest} from "../models/trend-request.model";
 
 @Component({
   selector: 'app-trend-edit',
@@ -13,13 +16,10 @@ import {Trend} from "../models/trend.model";
 export class TrendEditComponent {
   private trend: Trend | null = null;
 
-  @ViewChild('dialog', { static: true }) dialogEl!: ElementRef<HTMLDialogElement>;
-
-  @Input('trend') set trendInput(value: Trend | null) {
-    console.log(value?.provider);
+  @Input('trend') set trendEdit(value: Trend | null) {
     this.trend = value;
 
-    if (value) {
+    if (value !== null) {
       this.formGroup.setValue({
         provider: value.provider,
         content: value.body.join('\n'),
@@ -29,14 +29,18 @@ export class TrendEditComponent {
       });
     }
   }
+  @ViewChild('dialog', { static: true }) dialogEl!: ElementRef<HTMLDialogElement>;
 
   formGroup = new FormGroup({
-    url: new FormControl('', [Validators.required, urlValidator()]),
-    image: new FormControl('', [Validators.required, urlValidator()]),
-    title: new FormControl('', [Validators.required]),
-    provider: new FormControl('elmundo', [Validators.required, providerValidator(trendProviders)]),
-    content: new FormControl('', [Validators.required]),
+    url: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, urlValidator()] }),
+    image: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, urlValidator()] }),
+    title: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
+    provider: new FormControl<TrendProvider>('elmundo', { nonNullable: true, validators: [Validators.required, providerValidator(trendProviders)] }),
+    content: new FormControl<string>('', { nonNullable: true, validators: [Validators.required] }),
   });
+
+  constructor(private readonly store: Store) {
+  }
 
   closeModal() {
     this.dialogEl.nativeElement.close();
@@ -51,6 +55,18 @@ export class TrendEditComponent {
   }
 
   submitForm() {
-    console.log(this.formGroup.value);
+    if (!this.formGroup.invalid) {
+      // In this case, all formGroup.value.[controlname] has value because all fields are required
+      // so we can safely use ! to use its value. If this wasn't true we could use ?? to assign a default value
+      const trend: TrendRequest = {
+        url: this.formGroup.value.url!,
+        image: this.formGroup.value.image!,
+        provider: this.formGroup.value.provider!,
+        title: this.formGroup.value.title!,
+        body: this.formGroup.value.content!,
+      }
+      // TODO check for this.trend === null to create or update.
+      this.store.dispatch(updateTrend({ id: this.trend!.id, trend }));
+    }
   }
 }
