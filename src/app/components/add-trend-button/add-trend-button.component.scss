@@ -1,0 +1,30 @@
+button {
+  position: fixed;
+  bottom: 400px;
+  inset-inline-end: 72px;
+  z-index: 100;
+
+  display: grid;
+  place-items: center;
+
+  width: 72px;
+  height: 72px;
+
+  border: none;
+  border-radius: 50%;
+  outline: none;
+
+  background-color: var(--primary-color);
+  box-shadow: 0 6px 20px 0 color-mix(in srgb, var(--primary-color), transparent 40%);
+
+  cursor: pointer;
+  transition: all .2s;
+
+  &:is(:hover, :focus) {
+    background-color: color-mix(in srgb, var(--primary-color), white 15%);
+  }
+}
+
+button > img {
+  filter: brightness(100%) invert(1);
+}

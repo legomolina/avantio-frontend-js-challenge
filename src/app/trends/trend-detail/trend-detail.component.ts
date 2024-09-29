@@ -4,11 +4,12 @@ import { Store } from '@ngrx/store';
 import { selectSelectedTrend } from '../store/selectors';
 import {TrendEditComponent} from "../trend-edit/trend-edit.component";
 import {deleteTrend} from "../store/actions/trends-details-page.actions";
+import {openEditTrend} from "../../store/actions/edit-trend.actions";
+import {Trend} from "../models/trend.model";
 
 @Component({
   selector: 'app-trend-detail',
   template: `
-    <app-trend-edit #trendEdit [trend]="trend$ | async"></app-trend-edit>
     <a class="link-to-home" routerLink="/trends">
       <img src="assets/Iconos/Actions/back.svg" alt="Flecha hacia atrás" />
       <span>TODOS LOS EVENTOS</span>
@@ -16,7 +17,7 @@ import {deleteTrend} from "../store/actions/trends-details-page.actions";
     <article class="trend__detail" *ngIf="trend$ | async as trend">
       <header class="trend__header">
         <div class="trend__actions">
-          <button type="button" class="trend__action" (click)="editTrend()">
+          <button type="button" class="trend__action" (click)="editTrend(trend)">
             <img src="assets/Iconos/Actions/edit.svg" alt="Editar noticia" />
           </button>
           <button type="button" class="trend__action" (click)="removeTrend(trend.id)">
@@ -44,12 +45,10 @@ import {deleteTrend} from "../store/actions/trends-details-page.actions";
 export class TrendDetailComponent {
   protected trend$ = this.store.select(selectSelectedTrend);
 
-  @ViewChild('trendEdit') trendEditModal!: TrendEditComponent;
-
   constructor(private store: Store) {}
 
-  editTrend() {
-    this.trendEditModal.openModal();
+  editTrend(trend: Trend) {
+    this.store.dispatch(openEditTrend({ trend }))
   }
 
   removeTrend(id: string) {

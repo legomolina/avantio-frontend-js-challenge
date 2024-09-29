@@ -9,6 +9,8 @@ import * as TrendsListPageActions from '../actions/trends-list-page.actions';
 import * as TrendDetailPageActions from '../actions/trends-details-page.actions';
 import { TrendService } from '../../trend.service';
 import {Router} from "@angular/router";
+import {closeEditTrend} from "../../../store/actions/edit-trend.actions";
+import {Store} from "@ngrx/store";
 
 @Injectable()
 export class TrendsEffects {
@@ -43,6 +45,10 @@ export class TrendsEffects {
       ofType(TrendDetailPageActions.updateTrend),
       mergeMap(({ id, trend }) =>
         this.trendService.updateTrend(id, trend).pipe(
+          tap(() => {
+            // Should create a toast to notify the user
+            this.store.dispatch(closeEditTrend());
+          }),
           map(() => TrendsApiActions.updateTrendsSuccess({ id, trend })),
           catchError(() => of(TrendsApiActions.updateTrendError()))
         )
@@ -63,5 +69,10 @@ export class TrendsEffects {
     );
   });
 
-  constructor(private actions$: Actions, private trendService: TrendService, private router: Router) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly trendService: TrendService,
+    private readonly router: Router,
+    private readonly store: Store,
+  ) {}
 }

@@ -26,7 +26,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     SharedModule,
     ReactiveFormsModule,
   ],
-  exports: [TrendsListComponent],
+    exports: [TrendsListComponent, TrendEditComponent],
   providers: [
     TrendService,
     {

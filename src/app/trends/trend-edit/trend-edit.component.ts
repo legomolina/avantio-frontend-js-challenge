@@ -7,6 +7,7 @@ import {Store} from "@ngrx/store";
 import {updateTrend} from "../store/actions/trends-details-page.actions";
 import {Trend} from "../models/trend.model";
 import {TrendRequest} from "../models/trend-request.model";
+import {closeEditTrend} from "../../store/actions/edit-trend.actions";
 
 @Component({
   selector: 'app-trend-edit',
@@ -42,12 +43,22 @@ export class TrendEditComponent {
   constructor(private readonly store: Store) {
   }
 
+  /**
+   * Public interface
+   */
   closeModal() {
     this.dialogEl.nativeElement.close();
   }
 
+  /**
+   * Public interface
+   */
   openModal() {
     this.dialogEl.nativeElement.showModal();
+  }
+
+  cancelClick() {
+    this.store.dispatch(closeEditTrend());
   }
 
   onProviderChange(checked: boolean) {
