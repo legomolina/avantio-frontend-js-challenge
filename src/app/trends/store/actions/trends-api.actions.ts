@@ -27,3 +27,7 @@ export const updateTrendsSuccess = createAction(
 export const updateTrendError = createAction(
   '[Trends/API] Update Trend Error',
 );
+
+export const deleteTrendSuccess = createAction('[Trends/API] Delete trend success');
+
+export const deleteTrendError = createAction('[Trends/API] Delete trend error');

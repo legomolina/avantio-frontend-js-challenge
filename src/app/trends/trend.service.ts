@@ -39,6 +39,12 @@ export class TrendService {
       .pipe(map(({ modified }) => modified === 1));
   }
 
+  deleteTrend(id: string): Observable<void> {
+    const url = `${this.baseUrl}/${id}`;
+    // This endpoint returns the deleted trend, but in this case it's useless
+    return this.httpClient.delete<void>(url);
+  }
+
   private mapToTrendModel(trendResponse: TrendResponse): Trend {
     return {
       id: trendResponse._id,

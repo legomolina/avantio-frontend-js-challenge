@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { selectSelectedTrend } from '../store/selectors';
 import {TrendEditComponent} from "../trend-edit/trend-edit.component";
+import {deleteTrend} from "../store/actions/trends-details-page.actions";
 
 @Component({
   selector: 'app-trend-detail',
@@ -18,7 +19,7 @@ import {TrendEditComponent} from "../trend-edit/trend-edit.component";
           <button type="button" class="trend__action" (click)="editTrend()">
             <img src="assets/Iconos/Actions/edit.svg" alt="Editar noticia" />
           </button>
-          <button type="button" class="trend__action">
+          <button type="button" class="trend__action" (click)="removeTrend(trend.id)">
             <img src="assets/Iconos/Actions/delete.svg" alt="Borrar noticia" />
           </button>
         </div>
@@ -49,5 +50,9 @@ export class TrendDetailComponent {
 
   editTrend() {
     this.trendEditModal.openModal();
+  }
+
+  removeTrend(id: string) {
+    this.store.dispatch(deleteTrend({ id }));
   }
 }

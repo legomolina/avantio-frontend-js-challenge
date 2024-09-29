@@ -44,6 +44,11 @@ export const trendsReducer = createReducer(
   on(TrendsApiActions.updateTrendError, (state) => {
     // User should be informed via toast or similar
     return { ...state }
+  }),
+  on(TrendsApiActions.deleteTrendSuccess, (state): State => {
+    const updatedState = adapter.removeOne(state.selectedTrend!.id, state);
+
+    return { ...updatedState, selectedTrend: null };
   })
 );
 
