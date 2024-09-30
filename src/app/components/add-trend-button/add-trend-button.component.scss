@@ -23,8 +23,25 @@ button {
   &:is(:hover, :focus) {
     background-color: color-mix(in srgb, var(--primary-color), white 15%);
   }
+
+  @media (width < 420px) {
+    inset-inline: 50%;
+    inset-block-end: 24px;
+
+    width: 48px;
+    height: 48px;
+
+    transform: translateX(-50%);
+  }
 }
 
 button > img {
+  width: 24px;
+  height: 24px;
   filter: brightness(100%) invert(1);
+
+  @media (width < 420px) {
+    width: 16px;
+    height: 16px;
+  }
 }

@@ -17,6 +17,12 @@ dialog {
 
   background-color: var(--background-color);
   box-shadow: -1px 1px 20px 0 rgb(0 0 0 / .12);
+
+  @media (width < 420px) {
+    width: 100%;
+    padding: 32px 24px 11px;
+    border-radius: 0;
+  }
 }
 
 dialog::backdrop {
@@ -40,6 +46,10 @@ header {
     display: flex;
     flex-flow: row wrap;
     margin-inline-start: auto;
+
+    @media (width < 420px) {
+      display: none;
+    }
   }
 }
 
@@ -49,6 +59,11 @@ section {
   row-gap: 40px;
 
   margin-top: 72px;
+
+  @media (width < 420px) {
+    row-gap: 32px;
+    margin-top: 50px;
+  }
 }
 
 .provider-selector .label {
@@ -67,4 +82,16 @@ section {
   font-size: 14px;
   font-weight: 400;
   user-select: none;
+}
+
+.mobile-actions {
+  display: none;
+
+  @media (width < 420px) {
+    display: block;
+  }
+
+  app-button {
+    --button-width: 100%;
+  }
 }
