@@ -13,8 +13,6 @@ import {TrendEditComponent} from "./trends/trend-edit/trend-edit.component";
       *ngIf="isLoading$ | async"
       class="app-progress-bar"
     ></app-progress-bar>
-    <app-add-trend-button></app-add-trend-button>
-    <app-trend-edit #trendEdit [trend]="trend$ | async"></app-trend-edit>
     <header class="app-header">
       <a routerLink="/">
         <img
@@ -34,6 +32,8 @@ import {TrendEditComponent} from "./trends/trend-edit/trend-edit.component";
       <app-menu-large *ngIf="isLargeScreen$ | async"></app-menu-large>
     </nav>
     <main class="app-main-content">
+      <app-add-trend-button></app-add-trend-button>
+      <app-trend-edit #trendEdit [trend]="trend$ | async"></app-trend-edit>
       <router-outlet></router-outlet>
     </main>
   `,
