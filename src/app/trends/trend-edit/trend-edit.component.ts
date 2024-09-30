@@ -4,7 +4,7 @@ import {urlValidator} from "../../_core/validators/url-validator";
 import {providerValidator} from "../../_core/validators/provider-validator";
 import {TrendProvider, trendProviders} from "../models/trend-provider.model";
 import {Store} from "@ngrx/store";
-import {updateTrend} from "../store/actions/trends-details-page.actions";
+import {createTrend, updateTrend} from "../store/actions/trends-details-page.actions";
 import {Trend} from "../models/trend.model";
 import {TrendRequest} from "../models/trend-request.model";
 import {closeEditTrend} from "../../store/actions/edit-trend.actions";
@@ -76,8 +76,12 @@ export class TrendEditComponent {
         title: this.formGroup.value.title!,
         body: this.formGroup.value.content!,
       }
-      // TODO check for this.trend === null to create or update.
-      this.store.dispatch(updateTrend({ id: this.trend!.id, trend }));
+
+      if (this.trend === null) {
+        this.store.dispatch(createTrend({ trend }));
+      } else {
+        this.store.dispatch(updateTrend({id: this.trend!.id, trend}));
+      }
     }
   }
 }

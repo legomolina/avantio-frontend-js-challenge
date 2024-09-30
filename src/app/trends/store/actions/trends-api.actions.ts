@@ -31,3 +31,10 @@ export const updateTrendError = createAction(
 export const deleteTrendSuccess = createAction('[Trends/API] Delete trend success');
 
 export const deleteTrendError = createAction('[Trends/API] Delete trend error');
+
+export const createTrendSuccess = createAction(
+  '[Trends/API] Create trend success',
+  props<{ trend: Trend }>()
+);
+
+export const createTrendError = createAction('[Trends/API] Create trend error');

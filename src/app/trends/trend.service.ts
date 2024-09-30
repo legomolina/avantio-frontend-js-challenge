@@ -10,6 +10,7 @@ import { TrendResponse } from './models/trend-response.model';
 import { environment } from 'src/environments/environment';
 import {PutTrendResponseModel} from "./models/put-trend-response.model";
 import {TrendRequest} from "./models/trend-request.model";
+import {CreateTrendResponseModel} from "./models/create-trend-response.model";
 
 @Injectable()
 export class TrendService {
@@ -43,6 +44,11 @@ export class TrendService {
     const url = `${this.baseUrl}/${id}`;
     // This endpoint returns the deleted trend, but in this case it's useless
     return this.httpClient.delete<void>(url);
+  }
+
+  createTrend(trend: TrendRequest): Observable<Trend> {
+    const url = `${this.baseUrl}`;
+    return this.httpClient.post<CreateTrendResponseModel>(url, trend).pipe(map(({ trend }) => this.mapToTrendModel(trend)));
   }
 
   private mapToTrendModel(trendResponse: TrendResponse): Trend {

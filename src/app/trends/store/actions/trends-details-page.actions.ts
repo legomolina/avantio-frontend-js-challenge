@@ -4,3 +4,5 @@ import {TrendRequest} from "../../models/trend-request.model";
 export const deleteTrend = createAction('[Trend detail] Delete', props<{ id: string }>());
 
 export const updateTrend = createAction('[Trend detail] Update', props<{ id: string, trend: TrendRequest }>());
+
+export const createTrend = createAction('[Trend detail] Create', props<{ trend: TrendRequest }>());

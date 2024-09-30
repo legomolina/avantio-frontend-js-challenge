@@ -69,6 +69,22 @@ export class TrendsEffects {
     );
   });
 
+  createTrend$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TrendDetailPageActions.createTrend),
+      mergeMap(({ trend }) =>
+        this.trendService.createTrend(trend).pipe(
+          tap(() => {
+            // Should create a toast to notify the user
+            this.store.dispatch(closeEditTrend());
+          }),
+          map((trend) => TrendsApiActions.createTrendSuccess({ trend })),
+          catchError(() => of(TrendsApiActions.createTrendError())),
+        )
+      )
+    );
+  });
+
   constructor(
     private readonly actions$: Actions,
     private readonly trendService: TrendService,
