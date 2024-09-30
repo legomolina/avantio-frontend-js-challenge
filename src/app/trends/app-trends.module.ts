@@ -14,9 +14,10 @@ import { trendsFeatureKey, trendsReducer } from './store/reducers';
 import { TrendEditComponent } from './trend-edit/trend-edit.component';
 import {SharedModule} from "../_shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {AddTrendButtonComponent} from "./components/add-trend-button/add-trend-button.component";
 
 @NgModule({
-  declarations: [TrendsListComponent, TrendDetailComponent, TrendEditComponent],
+  declarations: [TrendsListComponent, TrendDetailComponent, TrendEditComponent, AddTrendButtonComponent],
   imports: [
     CommonModule,
     AppTrendsRoutingModule,
@@ -26,7 +27,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     SharedModule,
     ReactiveFormsModule,
   ],
-    exports: [TrendsListComponent, TrendEditComponent],
+    exports: [TrendsListComponent, TrendEditComponent, AddTrendButtonComponent],
   providers: [
     TrendService,
     {

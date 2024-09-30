@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {openEditTrend} from "../../store/actions/edit-trend.actions";
+import {openEditTrend} from "../../../store/actions/edit-trend.actions";
 
 @Component({
   selector: 'app-add-trend-button',

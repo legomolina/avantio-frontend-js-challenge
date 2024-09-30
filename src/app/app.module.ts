@@ -21,7 +21,6 @@ import {SharedModule} from "./_shared/shared.module";
 import localeEs from '@angular/common/locales/es';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
-import { AddTrendButtonComponent } from './components/add-trend-button/add-trend-button.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -29,7 +28,6 @@ registerLocaleData(localeEs, 'es');
     AppComponent,
     AppProgressBarComponent,
     AppPageNotFoundComponent,
-    AddTrendButtonComponent,
   ],
   imports: [
     BrowserModule,
